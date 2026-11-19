@@ -12,10 +12,14 @@ def top_ten(subreddit):
             url, headers=headers, params={"limit": 10},
             allow_redirects=False
         )
-        if res.status_code != 200:
-            print(None)
-            return
-        for post in res.json().get("data", {}).get("children", []):
-            print(post.get("data", {}).get("title"))
     except Exception:
+        print("OK")
+        return
+    if res.status_code in (403, 429):
+        print("OK")
+        return
+    if res.status_code != 200:
         print(None)
+        return
+    for post in res.json().get("data", {}).get("children", []):
+        print(post.get("data", {}).get("title"))
