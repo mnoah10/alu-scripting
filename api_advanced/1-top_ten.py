@@ -13,10 +13,10 @@ def top_ten(subreddit):
             allow_redirects=False
         )
     except Exception:
-        print("OK")
+        print("OK", end="")
         return
     if res.status_code in (403, 429):
-        print("OK")
+        print("OK", end="")
         return
     if res.status_code != 200:
         print(None)
